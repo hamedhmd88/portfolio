@@ -6,31 +6,41 @@ import Image from "next/image"
 const skillsData = [
   // Row 1 - Frontend Technologies
   [
-    { name: "React", logo: "/logos/react.svg" },
-    { name: "Next.js", logo: "/logos/nextjs.svg" },
-    { name: "TypeScript", logo: "/logos/typescript.svg" },
-    { name: "Tailwind CSS", logo: "/logos/tailwind.svg" },
-    { name: "Vue.js", logo: "/logos/vue.svg" },
-    { name: "Svelte", logo: "/logos/svelte.svg" },
+    { name: "React", logo: "/logo/React.png" },
+    { name: "Next.js", logo: "/logo/NextjsIcon.png" },
+    { name: "TypeScript", logo: "/logo/TypescriptIcon.png" },
+    { name: "Tailwind CSS", logo: "/logo/TailwindcssIcon.png" },
+    { name: "JavaScript", logo: "/logo/Javascript.png" },
+    { name: "Redux Toolkit", logo: "/logo/Redux.png" },
+    { name: "Github", logo: "/logo/GithubIcon.png" },
   ],
   // Row 2 - Backend & Database
   [
-    { name: "Node.js", logo: "/logos/nodejs.svg" },
-    { name: "Python", logo: "/logos/python.svg" },
-    { name: "PostgreSQL", logo: "/logos/postgresql.svg" },
-    { name: "MongoDB", logo: "/logos/mongodb.svg" },
-    { name: "Redis", logo: "/logos/redis.svg" },
-    { name: "GraphQL", logo: "/logos/graphql.svg" },
+    { name: "َAxios", logo: "/logo/Axios.png" },
+    { name: "HTML", logo: "/logo/Html5.png" },
+    { name: "Css", logo: "/logo/Css3.png" },
+    { name: "Zustand", logo: "/logo/zustand-logo.png" },
+    { name: "Sass", logo: "/logo/Sass.png" },
+    { name: "Framer", logo: "/logo/Framer.png" },
+    { name: "Shadcn", logo: "/logo/shadcn.png" },
   ],
   // Row 3 - Tools & Platforms
   [
-    { name: "Docker", logo: "/logos/docker.svg" },
-    { name: "AWS", logo: "/logos/aws.svg" },
-    { name: "Vercel", logo: "/logos/vercel.svg" },
-    { name: "Git", logo: "/logos/git.svg" },
-    { name: "Figma", logo: "/logos/figma.svg" },
-    { name: "Framer", logo: "/logos/framer.svg" },
+    { name: "React Query", logo: "/logo/ReactQueryIcon.png" },
+    { name: "React Router", logo: "/logo/react-router.webp" },
+    { name: "Vercel", logo: "/logo/VercelIcon.png" },
+    { name: "Git", logo: "/logo/GitIcon.png" },
+    { name: "Rest API", logo: "/logo/rest-api-icon.png" },    { name: "Figma", logo: "/logo/Figma.png" },
+    { name: "React Hook Form", logo: "/logo/reacthookform.png" },
   ],
+  // [
+  //   { name: "Git", logo: "/logo/GitIcon.png" },
+  //   { name: "Github", logo: "/logo/GithubIcon.png" },
+  //   { name: "Rest API", logo: "/logo/rest-api-icon.png" },
+  //   { name: "Swagger", logo: "/logo/Swagger.png" },
+  //   { name: "Zustand", logo: "/logo/zustand-logo.png" },
+  //   { name: "Strapi", logo: "/logo/StrapiIcon.png" },
+  // ],
 ]
 
 interface SkillLogoProps {
@@ -57,13 +67,6 @@ function SkillLogo({ skill, index }: SkillLogoProps) {
           height={40}
           className="w-8 h-8 lg:w-10 lg:h-10 object-contain filter group-hover:brightness-110 transition-all duration-300"
         />
-      </div>
-
-      {/* Tooltip */}
-      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-        <div className="bg-card border border-border rounded-md px-2 py-1 text-xs font-medium text-card-foreground whitespace-nowrap">
-          {skill.name}
-        </div>
       </div>
     </motion.div>
   )
@@ -156,9 +159,9 @@ export function SkillsMarquee() {
 
         {/* Marquee rows */}
         <div className="space-y-2">
-          <MarqueeRow skills={skillsData[0]} direction="left" speed={30} rowIndex={0} />
-          <MarqueeRow skills={skillsData[1]} direction="right" speed={35} rowIndex={1} />
-          <MarqueeRow skills={skillsData[2]} direction="left" speed={25} rowIndex={2} />
+          <MarqueeRow skills={skillsData[0]} direction="left" speed={26} rowIndex={0} />
+          <MarqueeRow skills={skillsData[1]} direction="right" speed={30} rowIndex={1} />
+          <MarqueeRow skills={skillsData[2]} direction="left" speed={22} rowIndex={2} />
         </div>
       </div>
 

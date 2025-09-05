@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
-const typewriterText = "Full Stack Developer & Creative Problem Solver"
+const typewriterText = "Front-End Developer & Web Designer"
 
 export function Hero() {
   const [displayedText, setDisplayedText] = useState("")
@@ -48,7 +48,7 @@ export function Hero() {
             className="text-5xl lg:text-7xl font-bold text-balance"
           >
             <span className="text-foreground">Hi, I'm </span>
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Your Name</span>
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Hamed Mahjoobi</span>
           </motion.h1>
 
           <motion.div
@@ -155,7 +155,7 @@ export function Hero() {
               {/* Profile image */}
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20">
                 <Image
-                  src="/professional-developer-portrait.png"
+                  src="/hamedphoto.png"
                   alt="Your Name - Professional Developer Portrait"
                   fill
                   className="object-cover"

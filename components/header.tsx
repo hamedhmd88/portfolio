@@ -71,7 +71,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                className="text-foreground  transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
               >
                 {item.name}
               </Button>
@@ -93,7 +93,7 @@ export function Header() {
             variant="ghost"
             size="sm"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-foreground hover:text-primary"
+            className="text-foreground "
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -114,7 +114,7 @@ export function Header() {
                 key={item.name}
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="w-full text-left justify-start text-foreground hover:text-primary transition-colors"
+                className="w-full text-left justify-start text-foreground  transition-colors"
               >
                 {item.name}
               </Button>
