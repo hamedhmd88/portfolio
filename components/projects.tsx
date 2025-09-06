@@ -317,7 +317,7 @@ export function Projects() {
             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
           >
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/hamedhmd88"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View all projects on GitHub"

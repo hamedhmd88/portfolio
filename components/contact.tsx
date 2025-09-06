@@ -1,25 +1,42 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { motion } from "framer-motion"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
-import { Mail, Github, Linkedin, Instagram, Send } from "lucide-react"
+import { motion } from "framer-motion";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Instagram,
+  Send,
+  MessageCircle,
+} from "lucide-react";
+import { useState } from "react";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { cn } from "@/lib/utils";
 
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/hamedhmd88",
     icon: Github,
     color: "hover:text-foreground",
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/yourusername",
+    href: "www.linkedin.com/in/hamed-mahjoobi110",
     icon: Linkedin,
     color: "hover:text-blue-400",
   },
@@ -29,99 +46,69 @@ const socialLinks = [
     icon: Instagram,
     color: "hover:text-pink-400",
   },
-]
+  {
+    name: "Telegram",
+    href: "https://t.me/@hamedmahjoobi",
+    icon: MessageCircle,
+    color: "hover:text-blue-500",
+  },
+];
 
 interface ContactFormData {
-  name: string
-  email: string
-  message: string
+  name: string;
+  email: string;
+  message: string;
 }
 
+const contactSchema = z.object({
+  name: z.string().min(1, { message: "This field is required" }),
+  email: z
+    .string()
+    .min(1, { message: "This field is required" })
+    .email({ message: "Please enter a valid email address" }),
+  message: z.string().min(1, { message: "This field is required" }),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
 export function Contact() {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const validateForm = (): boolean => {
-    if (!formData.name.trim()) {
-      toast({
-        title: "Name is required",
-        description: "Please enter your name.",
-        variant: "destructive",
-      })
-      return false
-    }
-
-    if (!formData.email.trim()) {
-      toast({
-        title: "Email is required",
-        description: "Please enter your email address.",
-        variant: "destructive",
-      })
-      return false
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      })
-      return false
-    }
-
-    if (!formData.message.trim()) {
-      toast({
-        title: "Message is required",
-        description: "Please enter your message.",
-        variant: "destructive",
-      })
-      return false
-    }
-
-    return true
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsSubmitting(true)
-
-    // Simulate form submission
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       toast({
         title: "Message sent successfully!",
         description: "Thank you for reaching out. I'll get back to you soon.",
-      })
-
-      setFormData({ name: "", email: "", message: "" })
+      });
+      form.reset();
     } catch (error) {
       toast({
         title: "Failed to send message",
         description: "Please try again or contact me directly via email.",
         variant: "destructive",
-      })
+      });
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <section id="contact" className="relative py-20 px-6 overflow-hidden" aria-labelledby="contact-heading">
+    <section
+      id="contact"
+      className="relative py-20 px-6 overflow-hidden"
+      aria-labelledby="contact-heading"
+    >
       {/* Animated background elements */}
       <motion.div
         animate={{
@@ -139,7 +126,7 @@ export function Contact() {
         }}
         className="absolute inset-0 dark:opacity-100 opacity-50"
       />
-      
+
       {/* Large floating bubbles */}
       <motion.div
         animate={{
@@ -154,7 +141,7 @@ export function Contact() {
         }}
         className="absolute top-1/4 left-1/5 w-72 h-72 bg-gradient-to-br from-primary/12 to-secondary/12 rounded-full blur-3xl"
       />
-      
+
       <motion.div
         animate={{
           y: [0, 30, 0],
@@ -169,7 +156,7 @@ export function Contact() {
         }}
         className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-gradient-to-br from-secondary/15 to-primary/15 rounded-full blur-3xl"
       />
-      
+
       <motion.div
         animate={{
           y: [0, -35, 0],
@@ -217,8 +204,8 @@ export function Contact() {
             viewport={{ once: true }}
             className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty"
           >
-            I'm always interested in new opportunities and collaborations. Feel free to reach out if you'd like to work
-            together!
+            I'm always interested in new opportunities and collaborations. Feel
+            free to reach out if you'd like to work together!
           </motion.p>
         </motion.div>
 
@@ -234,18 +221,25 @@ export function Contact() {
             <div>
               <h3 className="text-2xl font-semibold mb-4">Get In Touch</h3>
               <p className="text-muted-foreground mb-6">
-                Ready to start a project or just want to chat? I'd love to hear from you.
+                Ready to start a project or just want to chat? I'd love to hear
+                from you.
               </p>
 
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <Button
                   asChild
                   size="lg"
                   className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold"
                 >
-                  <a href="mailto:your.email@example.com" className="flex items-center justify-center gap-3">
+                  <a
+                    href="mailto:your.email@example.com"
+                    className="flex items-center justify-center gap-3"
+                  >
                     <Mail className="w-5 h-5" />
-                    your.email@example.com
+                    hmdhamed88@gmail.com{" "}
                   </a>
                 </Button>
               </motion.div>
@@ -282,80 +276,98 @@ export function Contact() {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
-                </label>
-                <Input
-                  id="name"
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-6"
+              >
+                <FormField
+                  control={form.control}
                   name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Your full name"
-                  className="w-full"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Name</FormLabel>
+                      <motion.div
+                        animate={
+                          form.formState.errors.name
+                            ? { x: [0, -5, 5, -5, 5, 0] }
+                            : {}
+                        }
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <FormControl>
+                          <Input placeholder="Your full name" {...field} />
+                        </FormControl>
+                      </motion.div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
-                <Input
-                  id="email"
+                <FormField
+                  control={form.control}
                   name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="your.email@example.com"
-                  className="w-full"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <motion.div
+                        animate={
+                          form.formState.errors.email
+                            ? { x: [0, -5, 5, -5, 5, 0] }
+                            : {}
+                        }
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <FormControl>
+                          <Input
+                            type="email"
+                            placeholder="your.email@example.com"
+                            {...field}
+                          />
+                        </FormControl>
+                      </motion.div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
+                <FormField
+                  control={form.control}
                   name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Tell me about your project or just say hello!"
-                  rows={5}
-                  className="w-full resize-none"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <motion.div
+                        animate={
+                          form.formState.errors.message
+                            ? { x: [0, -5, 5, -5, 5, 0] }
+                            : {}
+                        }
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <FormControl>
+                          <Textarea
+                            placeholder="Tell me about your project or just say hello!"
+                            className="resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                      </motion.div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
-
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   type="submit"
-                  size="lg"
                   disabled={isSubmitting}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                  className="w-full"
                 >
-                  {isSubmitting ? (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full"
-                    />
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                    </>
-                  )}
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                  <Send/>
                 </Button>
-              </motion.div>
-            </form>
+              </form>
+            </Form>
           </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }
