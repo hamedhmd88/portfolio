@@ -37,7 +37,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    href: "www.linkedin.com/in/hamed-mahjoobi110",
+    href: "https://linkedin.com/in/hamed-mahjoobi110",
     icon: Linkedin,
     color: "hover:text-blue-400",
   },
