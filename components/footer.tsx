@@ -1,6 +1,5 @@
-"use client"
 
-import { motion } from "framer-motion"
+import * as motion from "motion/react-client"
 import { Heart } from "lucide-react"
 
 export function Footer() {
@@ -17,9 +16,8 @@ export function Footer() {
           className="text-center space-y-4"
         >
           <p className="text-muted-foreground flex items-center justify-center gap-2">
-            Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by Your Name
+            Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by Your Hamed
           </p>
-          <p className="text-sm text-muted-foreground">© {currentYear} Your Name. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>
