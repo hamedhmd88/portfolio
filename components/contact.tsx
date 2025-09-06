@@ -1,7 +1,8 @@
 "use client";
 
+// Import necessary dependencies
 import { motion } from "framer-motion";
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -25,8 +26,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { cn } from "@/lib/utils";
 
+// Array of social media links
 const socialLinks = [
   {
     name: "GitHub",
@@ -54,12 +55,7 @@ const socialLinks = [
   },
 ];
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  message: string;
-}
-
+// Validation schema for the contact form
 const contactSchema = z.object({
   name: z.string().min(1, { message: "This field is required" }),
   email: z
@@ -69,9 +65,12 @@ const contactSchema = z.object({
   message: z.string().min(1, { message: "This field is required" }),
 });
 
+// Type definition for form data
 type ContactFormData = z.infer<typeof contactSchema>;
 
+// Main Contact component
 export function Contact() {
+  // Initialize form with validation
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -80,9 +79,14 @@ export function Contact() {
       message: "",
     },
   });
+
+  // State for submission status
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Toast notification hook
   const { toast } = useToast();
 
+  // Form submission handler
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
@@ -104,6 +108,7 @@ export function Contact() {
   };
 
   return (
+    // Section for contact with animated background
     <section
       id="contact"
       className="relative py-20 px-6 overflow-hidden"
@@ -185,7 +190,9 @@ export function Contact() {
         className="absolute bottom-1/4 left-1/4 w-40 h-40 bg-gradient-to-l from-primary/8 to-secondary/8 rounded-full blur-3xl"
       />
 
+      {/* Container for content */}
       <div className="container mx-auto max-w-4xl relative z-10">
+        {/* Heading section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -209,6 +216,7 @@ export function Contact() {
           </motion.p>
         </motion.div>
 
+        {/* Grid for contact info and form */}
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Contact Information */}
           <motion.div
@@ -232,14 +240,15 @@ export function Contact() {
                 <Button
                   asChild
                   size="lg"
+                  variant="outline"
                   className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold"
                 >
                   <a
-                    href="mailto:your.email@example.com"
-                    className="flex items-center justify-center gap-3"
+                    href="mailto:hmdhamed88@gmail.com"
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-primary/25"
                   >
                     <Mail className="w-5 h-5" />
-                    hmdhamed88@gmail.com{" "}
+                    hmdhamed88@gmail.com
                   </a>
                 </Button>
               </motion.div>
@@ -270,6 +279,7 @@ export function Contact() {
             </div>
           </motion.div>
 
+          {/* Contact form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -281,6 +291,7 @@ export function Contact() {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-6"
               >
+                {/* Name field */}
                 <FormField
                   control={form.control}
                   name="name"
@@ -303,6 +314,7 @@ export function Contact() {
                     </FormItem>
                   )}
                 />
+                {/* Email field */}
                 <FormField
                   control={form.control}
                   name="email"
@@ -329,6 +341,7 @@ export function Contact() {
                     </FormItem>
                   )}
                 />
+                {/* Message field */}
                 <FormField
                   control={form.control}
                   name="message"
@@ -358,10 +371,9 @@ export function Contact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full"
+                  className="w-full cursor-pointer"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                  <Send/>
+                  {isSubmitting ? "Sending..." : "Send Message"} <Send />
                 </Button>
               </form>
             </Form>
