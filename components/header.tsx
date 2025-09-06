@@ -56,7 +56,7 @@ export function Header() {
           className="text-xl font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-md px-2 py-1"
           aria-label="Go to top of page"
         >
-          Your Name
+         Hamed Mahjoobi
         </motion.button>
 
         {/* Desktop Navigation */}
@@ -71,7 +71,7 @@ export function Header() {
               <Button
                 variant="ghost"
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground  transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                className="text-foreground  transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer"
               >
                 {item.name}
               </Button>
@@ -93,7 +93,7 @@ export function Header() {
             variant="ghost"
             size="sm"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-foreground "
+            className="text-foreground cursor-pointer"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

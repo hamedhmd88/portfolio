@@ -121,8 +121,84 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 px-6">
-      <div className="container mx-auto max-w-4xl">
+    <section id="contact" className="relative py-20 px-6 overflow-hidden" aria-labelledby="contact-heading">
+      {/* Animated background elements */}
+      <motion.div
+        animate={{
+          background: [
+            "radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 60%)",
+            "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 60%)",
+            "radial-gradient(circle at 60% 40%, rgba(5, 150, 105, 0.12) 0%, transparent 60%)",
+            "radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.12) 0%, transparent 60%)",
+          ],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Number.POSITIVE_INFINITY,
+          repeatType: "reverse",
+        }}
+        className="absolute inset-0 dark:opacity-100 opacity-50"
+      />
+      
+      {/* Large floating bubbles */}
+      <motion.div
+        animate={{
+          y: [0, -40, 0],
+          x: [0, 20, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/4 left-1/5 w-72 h-72 bg-gradient-to-br from-primary/12 to-secondary/12 rounded-full blur-3xl"
+      />
+      
+      <motion.div
+        animate={{
+          y: [0, 30, 0],
+          x: [0, -25, 0],
+          scale: [1, 0.85, 1],
+        }}
+        transition={{
+          duration: 11,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+          delay: 2,
+        }}
+        className="absolute bottom-1/4 right-1/4 w-60 h-60 bg-gradient-to-br from-secondary/15 to-primary/15 rounded-full blur-3xl"
+      />
+      
+      <motion.div
+        animate={{
+          y: [0, -35, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+        className="absolute top-2/3 left-1/3 w-52 h-52 bg-gradient-to-br from-emerald-400/20 to-blue-400/20 rounded-full blur-3xl"
+      />
+
+      {/* Existing animated background elements */}
+      <motion.div
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-1/4 left-1/4 w-40 h-40 bg-gradient-to-l from-primary/8 to-secondary/8 rounded-full blur-3xl"
+      />
+
+      <div className="container mx-auto max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

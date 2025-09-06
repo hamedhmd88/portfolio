@@ -40,6 +40,23 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="space-y-6"
         >
+                    <motion.div
+            animate={{
+              background: [
+                "radial-gradient(circle at 20% 50%, rgba(5, 150, 105, 0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 50%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.3) 0%, transparent 50%)",
+                "radial-gradient(circle at 50% 80%, rgba(5, 150, 105, 0.3) 0%, transparent 50%)",
+              ],
+            }}
+            transition={{
+             duration: 12,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            repeatType: "mirror",
+            }}
+            className="absolute inset-0 rounded-full blur-2xl opacity-100 "
+          />
           <motion.h1
             id="hero-heading"
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +65,7 @@ export function Hero() {
             className="text-5xl lg:text-7xl font-bold text-balance"
           >
             <span className="text-foreground">Hi, I'm </span>
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Hamed Mahjoobi</span>
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Hamed</span>
           </motion.h1>
 
           <motion.div
@@ -84,25 +101,43 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.6 }}
-            className="flex gap-4"
+            className="flex gap-4 z-30"
             role="group"
             aria-label="Hero action buttons"
           >
-            <Button
-              onClick={scrollToProjects}
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-semibold focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className=" z-40"
             >
-              View Projects
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+              <Button
+                onClick={scrollToProjects}
+                                variant="outline"
+
+                size="lg"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-primary/25"
+              >
+                View Projects
+              </Button>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            className=" z-40"
+
             >
-              Get In Touch
-            </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-primary/25"
+              >
+                Get In Touch
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -130,7 +165,7 @@ export function Hero() {
               repeat: Number.POSITIVE_INFINITY,
               repeatType: "reverse",
             }}
-            className="absolute inset-0 rounded-full blur-3xl"
+            className="absolute inset-0 rounded-full blur-3xl opacity-100 "
           />
 
           {/* Profile image container */}

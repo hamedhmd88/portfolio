@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useState } from "react"
+import { SkillsParticles } from "./skills-particles"
 
 const skillsData = [
   // Row 1 - Frontend Technologies
@@ -30,25 +32,31 @@ const skillsData = [
     { name: "React Router", logo: "/logo/react-router.webp" },
     { name: "Vercel", logo: "/logo/VercelIcon.png" },
     { name: "Git", logo: "/logo/GitIcon.png" },
-    { name: "Rest API", logo: "/logo/rest-api-icon.png" },    { name: "Figma", logo: "/logo/Figma.png" },
+    { name: "Rest API", logo: "/logo/rest-api-icon.png" },
+    { name: "Figma", logo: "/logo/Figma.png" },
     { name: "React Hook Form", logo: "/logo/reacthookform.png" },
   ],
-  // [
-  //   { name: "Git", logo: "/logo/GitIcon.png" },
-  //   { name: "Github", logo: "/logo/GithubIcon.png" },
-  //   { name: "Rest API", logo: "/logo/rest-api-icon.png" },
-  //   { name: "Swagger", logo: "/logo/Swagger.png" },
-  //   { name: "Zustand", logo: "/logo/zustand-logo.png" },
-  //   { name: "Strapi", logo: "/logo/StrapiIcon.png" },
-  // ],
 ]
 
 interface SkillLogoProps {
   skill: { name: string; logo: string }
   index: number
+  onHover: (isHovered: boolean) => void
 }
 
-function SkillLogo({ skill, index }: SkillLogoProps) {
+function SkillLogo({ skill, index, onHover }: SkillLogoProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+    onHover(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    onHover(false)
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
@@ -58,15 +66,35 @@ function SkillLogo({ skill, index }: SkillLogoProps) {
       whileHover={{ scale: 1.1, y: -5 }}
       whileTap={{ scale: 0.95 }}
       className="flex-shrink-0 w-16 h-16 lg:w-20 lg:h-20 mx-4 lg:mx-6 relative group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full h-full bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:border-primary/50 group-hover:bg-card/80 group-hover:shadow-lg group-hover:shadow-primary/20">
+      <div className="w-full h-full bg-card/50 backdrop-blur-sm border cursor-pointer border-border/50 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:border-primary/50 group-hover:bg-card/80 group-hover:shadow-lg group-hover:shadow-primary/20 relative overflow-hidden">
+        {/* Logo Image */}
         <Image
           src={skill.logo || "/placeholder.svg"}
           alt={`${skill.name} logo`}
           width={40}
           height={40}
-          className="w-8 h-8 lg:w-10 lg:h-10 object-contain filter group-hover:brightness-110 transition-all duration-300"
+          className={`w-8 h-8 lg:w-10 lg:h-10 object-contain  filter group-hover:brightness-110 transition-all duration-300 ${
+            isHovered ? 'blur-2xl' : ''
+          }`}
         />
+        
+        {/* Skill Name Overlay */}
+        <motion.div
+          initial={{ y: '100%', opacity: 0 }}
+          animate={{
+            y: isHovered ? '0%' : '100%',
+            opacity: isHovered ? 1 : 0
+          }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="absolute inset-0   flex items-center justify-center rounded-xl"
+        >
+          <span className="text-primary text-xs lg:text-sm font-medium text-center px-2">
+            {skill.name}
+          </span>
+        </motion.div>
       </div>
     </motion.div>
   )
@@ -80,7 +108,12 @@ interface MarqueeRowProps {
 }
 
 function MarqueeRow({ skills, direction, speed, rowIndex }: MarqueeRowProps) {
+  const [isPaused, setIsPaused] = useState(false)
   const duplicatedSkills = [...skills, ...skills, ...skills] // Triple for seamless loop
+
+  const handleHover = (isHovered: boolean) => {
+    setIsPaused(isHovered)
+  }
 
   return (
     <div className="relative overflow-hidden py-4">
@@ -96,11 +129,19 @@ function MarqueeRow({ skills, direction, speed, rowIndex }: MarqueeRowProps) {
             ease: "linear",
           },
         }}
+        style={{
+          animationPlayState: isPaused ? 'paused' : 'running',
+          width: `${skills.length * 200}%`
+        }}
         className="flex items-center"
-        style={{ width: `${skills.length * 200}%` }}
       >
         {duplicatedSkills.map((skill, index) => (
-          <SkillLogo key={`${skill.name}-${index}`} skill={skill} index={index} />
+          <SkillLogo 
+            key={`${skill.name}-${index}`} 
+            skill={skill} 
+            index={index} 
+            onHover={handleHover}
+          />
         ))}
       </motion.div>
     </div>
@@ -110,8 +151,30 @@ function MarqueeRow({ skills, direction, speed, rowIndex }: MarqueeRowProps) {
 export function SkillsMarquee() {
   return (
     <section className="relative py-16 lg:py-24 overflow-hidden">
+      {/* Particles Background */}
+      <SkillsParticles />
+      
+      {/* Animated Green Gradient Background */}
+      <motion.div
+        animate={{
+          background: [
+            "radial-gradient(600px circle at 0% 0%, rgba(16, 185, 129, 0.15), transparent 50%)",
+            "radial-gradient(600px circle at 100% 100%, rgba(16, 185, 129, 0.15), transparent 50%)",
+            "radial-gradient(600px circle at 0% 100%, rgba(16, 185, 129, 0.15), transparent 50%)",
+            "radial-gradient(600px circle at 100% 0%, rgba(16, 185, 129, 0.15), transparent 50%)",
+            "radial-gradient(600px circle at 0% 0%, rgba(16, 185, 129, 0.15), transparent 50%)",
+          ],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
+        className="absolute inset-0 opacity-60 dark:opacity-40"
+      />
+      
       {/* Background with gradient and blur effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5" />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 z-1" />
 
       {/* Animated background blobs */}
       <motion.div
@@ -124,7 +187,7 @@ export function SkillsMarquee() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "linear",
         }}
-        className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl z-1"
       />
 
       <motion.div
@@ -137,7 +200,7 @@ export function SkillsMarquee() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "linear",
         }}
-        className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-l from-secondary/10 to-transparent rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-l from-secondary/10 to-transparent rounded-full blur-3xl z-1"
       />
 
       <div className="relative z-10">

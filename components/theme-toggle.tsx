@@ -27,7 +27,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="sm"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="w-9 h-9 p-0 text-foreground  transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+      className="w-9 h-9 p-0 text-foreground  transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       <motion.div
