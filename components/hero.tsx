@@ -18,6 +18,13 @@ export function Hero() {
         setCurrentIndex((prev) => prev + 1)
       }, 100)
       return () => clearTimeout(timeout)
+    } else {
+      // وقتی متن کامل شد، بعد از 5 ثانیه ریست کن
+      const resetTimeout = setTimeout(() => {
+        setDisplayedText("");
+        setCurrentIndex(0);
+      }, 5000);
+      return () => clearTimeout(resetTimeout);
     }
   }, [currentIndex])
 
@@ -38,9 +45,9 @@ export function Hero() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="space-y-6"
+          className="space-y-6 relative"
         >
-                    <motion.div
+          <motion.div
             animate={{
               background: [
                 "radial-gradient(circle at 20% 50%, rgba(5, 150, 105, 0.3) 0%, transparent 50%)",
@@ -55,17 +62,17 @@ export function Hero() {
             ease: "easeInOut",
             repeatType: "mirror",
             }}
-            className="absolute inset-0 rounded-full blur-2xl opacity-100 "
+            className="absolute inset-0 rounded-full blur-2xl opacity-100"
           />
           <motion.h1
             id="hero-heading"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-5xl lg:text-7xl font-bold text-balance"
+            className="text-2xl md:text-3xl lg:text-5xl font-bold text-balance"
           >
             <span className="text-foreground">Hi, I'm </span>
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Hamed</span>
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Hamed Mahjoobi</span>
           </motion.h1>
 
           <motion.div
@@ -109,12 +116,11 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className=" z-40"
+              className="z-40"
             >
               <Button
                 onClick={scrollToProjects}
-                                variant="outline"
-
+                variant="outline"
                 size="lg"
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-primary/25"
               >
@@ -126,8 +132,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                            className=" z-40"
-
+              className="z-40"
             >
               <Button
                 variant="outline"
@@ -165,7 +170,7 @@ export function Hero() {
               repeat: Number.POSITIVE_INFINITY,
               repeatType: "reverse",
             }}
-            className="absolute inset-0 rounded-full blur-3xl opacity-100 "
+            className="absolute inset-0 rounded-full blur-3xl opacity-100"
           />
 
           {/* Profile image container */}

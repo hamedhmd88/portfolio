@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,8 +122,8 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-  }
+ @apply bg-background text-foreground;
+    font-family: 'Bungee', cursive;  }
 
   /* Smooth scroll behavior for anchor navigation */
   html {
@@ -154,4 +156,12 @@
   * {
     transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
+}
+
+
+.font-bungee {
+  font-family: 'Bungee', cursive;
+}
+.font-merienda {
+  font-family: 'Merienda', cursive;
 }
