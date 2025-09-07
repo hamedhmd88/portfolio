@@ -11,8 +11,8 @@ import { SkipLink } from "@/components/skip-link"
 export default function HomePage() {
   return (
     <>
-      <SkipLink />
-      <ParticlesBackground />
+      {/* <SkipLink />
+      <ParticlesBackground /> */}
       <Header />
       <main id="main-content" className="relative min-h-screen">
         <Hero />

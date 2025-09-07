@@ -152,17 +152,16 @@ export function SkillsMarquee() {
   return (
     <section className="relative py-16 lg:py-24 overflow-hidden">
       {/* Particles Background */}
-      <SkillsParticles />
+      {/* <SkillsParticles /> */}
       
       {/* Animated Green Gradient Background */}
       <motion.div
         animate={{
-          background: [
-            "radial-gradient(600px circle at 0% 0%, rgba(16, 185, 129, 0.15), transparent 50%)",
-            "radial-gradient(600px circle at 100% 100%, rgba(16, 185, 129, 0.15), transparent 50%)",
-            "radial-gradient(600px circle at 0% 100%, rgba(16, 185, 129, 0.15), transparent 50%)",
-            "radial-gradient(600px circle at 100% 0%, rgba(16, 185, 129, 0.15), transparent 50%)",
-            "radial-gradient(600px circle at 0% 0%, rgba(16, 185, 129, 0.15), transparent 50%)",
+         background: [
+            "radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 60% 40%, rgba(5, 150, 105, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)",
           ],
         }}
         transition={{
@@ -170,11 +169,11 @@ export function SkillsMarquee() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "linear",
         }}
-        className="absolute inset-0 opacity-60 dark:opacity-40"
+        className="absolute inset-0 opacity-100"
       />
       
       {/* Background with gradient and blur effects */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 z-1" />
+      {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5 z-1" /> */}
 
       {/* Animated background blobs */}
       <motion.div
@@ -187,7 +186,7 @@ export function SkillsMarquee() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "linear",
         }}
-        className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-transparent rounded-full blur-3xl z-1"
+        className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary/10 to-blue-400/30 rounded-full blur-3xl z-1"
       />
 
       <motion.div
@@ -200,7 +199,7 @@ export function SkillsMarquee() {
           repeat: Number.POSITIVE_INFINITY,
           ease: "linear",
         }}
-        className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-l from-secondary/10 to-transparent rounded-full blur-3xl z-1"
+        className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-gradient-to-l from-secondary/10 to-primary/25 rounded-full blur-3xl z-1"
       />
 
       <div className="relative z-10">
@@ -229,8 +228,8 @@ export function SkillsMarquee() {
       </div>
 
       {/* Gradient overlays for fade effect */}
-      <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
+      {/* <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" /> */}
     </section>
   )
 }

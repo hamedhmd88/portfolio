@@ -24,7 +24,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         scale: 1,
         perspective: 500,
       }}
-      style={{ transformStyle: 'preserve-3d' }}
+      style={{ transformStyle: "preserve-3d" }}
     >
       <motion.article
         className="group relative bg-background/20 backdrop-blur-md border border-border/50 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/50 cursor-pointer h-full"
@@ -50,19 +50,17 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         aria-labelledby={`project-title-${project.id}`}
       >
         {/* محتوای کارت */}
-        <div className="relative aspect-video overflow-hidden" >
+        <div className="relative aspect-video overflow-hidden">
           <Image
             src={project.image || "/placeholder.svg"}
             alt={`Screenshot of ${project.title} project showing the main interface`}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-cover transition-transform duration-300"
             loading="lazy"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-  
-          <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-  
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" /> */}
+
           {/* Featured Badge */}
           {project.featured && (
             <div className="absolute top-4 left-4">
@@ -72,28 +70,28 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
           )}
         </div>
-  
+
         {/* باقی محتوای کارت */}
         <div className="p-6 space-y-4">
           <div>
             <h3
               id={`project-title-${project.id}`}
-              className="text-xl font-semibold text-card-foreground group-hover:text-primary transition-colors"
+              className="text-xl md:text-2xl font-semibold text-card-foreground group-hover:text-primary transition-colors"
             >
               {project.title}
             </h3>
-            <p className="text-muted-foreground text-sm mt-2 text-pretty">
+            <p className="text-muted-foreground text-sm md:text-base mt-2 text-pretty">
               {project.description}
             </p>
           </div>
-  
+
           <div role="list" aria-label={`Technologies used in ${project.title}`}>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
                 <Badge
                   key={tech}
-                  variant="secondary"
-                  className="text-xs"
+                  variant="outline"
+                  className="text-xs md:text-sm"
                   role="listitem"
                 >
                   {tech}
@@ -101,13 +99,13 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               ))}
             </div>
           </div>
-  
+
           <div className="flex gap-3 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
             <Button
               asChild
               size="sm"
               variant="outline"
-              className="flex-1 bg-transparent"
+              className="flex-1 bg-transparent hover:border hover:border-primary hover:text-primary-foreground  text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-primary/25"
             >
               <a
                 href={project.githubUrl}
@@ -119,7 +117,11 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                 Code
               </a>
             </Button>
-            <Button asChild size="sm" className="flex-1">
+            <Button
+              asChild
+              size="sm"
+              className="flex-1 hover:bg-transparent hover:border hover:border-primary   text-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-primary/25"
+            >
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -225,7 +227,7 @@ export function Projects() {
             Featured <span className="text-primary">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            A showcase of my recent work, featuring full-stack applications and
+            A showcase of my recent work, featuring front-end applications and
             innovative solutions.
           </p>
         </motion.div>

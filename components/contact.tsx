@@ -118,10 +118,10 @@ export function Contact() {
       <motion.div
         animate={{
           background: [
-            "radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 60%)",
-            "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 60%)",
-            "radial-gradient(circle at 60% 40%, rgba(5, 150, 105, 0.12) 0%, transparent 60%)",
-            "radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.12) 0%, transparent 60%)",
+            "radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 60% 40%, rgba(5, 150, 105, 0.3) 0%, transparent 50%)",
+            "radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.3) 0%, transparent 50%)",
           ],
         }}
         transition={{
@@ -129,7 +129,7 @@ export function Contact() {
           repeat: Number.POSITIVE_INFINITY,
           repeatType: "reverse",
         }}
-        className="absolute inset-0 dark:opacity-100 opacity-50"
+        className="absolute inset-0 opacity-100 "
       />
 
       {/* Large floating bubbles */}

@@ -24,7 +24,7 @@ export function About() {
           repeat: Number.POSITIVE_INFINITY,
           repeatType: "reverse",
         }}
-        className="absolute inset-0 dark:opacity-100 opacity-100"
+        className="absolute inset-0 opacity-100"
       />
 
       {/* Floating bubble animations */}
