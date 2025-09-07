@@ -9,46 +9,31 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: "Your Name - Full Stack Developer Portfolio",
+  title: "Hamed Mahjoobi - Front-End Developer Portfolio",
   description:
-    "Modern portfolio showcasing full-stack development projects, skills in React, Next.js, TypeScript, and more. View my latest work and get in touch.",
-  keywords: ["portfolio", "developer", "full-stack", "react", "nextjs", "typescript"],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
+    "Modern portfolio showcasing Front-End development projects, skills in React, Next.js, TypeScript, and more. View my latest work and get in touch.",
+  keywords: ["portfolio", "developer", "Front-End", "react", "nextjs", "typescript"],
+  authors: [{ name: "Hamed Mahjoobi" }],
+  creator: "Hamed Mahjoobi",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://yourportfolio.com",
-    title: "Your Name - Full Stack Developer Portfolio",
-    description: "Modern portfolio showcasing full-stack development projects and skills.",
-    siteName: "Your Name Portfolio",
+    title: "Hamed Mahjoobi - Front-End Developer Portfolio",
+    description: "Modern portfolio showcasing Front-End development projects and skills.",
+    siteName: "Hamed Mahjoobi Portfolio",
     images: [
       {
-        url: "/portfolio-og-image.jpg",
+        url: "/hamedphoto.png",
         width: 1200,
         height: 630,
-        alt: "Your Name Portfolio",
+        alt: "Hamed Mahjoobi Portfolio",
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Your Name - Full Stack Developer Portfolio",
-    description: "Modern portfolio showcasing full-stack development projects and skills.",
-    images: ["/portfolio-twitter-image.jpg"],
+  icons: {
+    icon: "/favicon.ico",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  generator: "v0.app",
 }
 
 export default function RootLayout({
