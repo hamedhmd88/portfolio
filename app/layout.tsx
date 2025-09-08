@@ -5,6 +5,7 @@ import "./globals.css"
 import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import BackToTop from "@/components/BackToTop"
 
 export const metadata: Metadata = {
   title: "Hamed Mahjoobi - Front-End Developer Portfolio",
@@ -43,7 +44,7 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`font-bungee  antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
-          <Suspense fallback={null}>{children}</Suspense>
+          <Suspense fallback={null}>{children} <BackToTop/></Suspense>
           <Toaster />
         </ThemeProvider>
         <Analytics />
