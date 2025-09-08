@@ -7,6 +7,7 @@ import { Contact } from "@/components/contact"
 import { ParticlesBackground } from "@/components/particles-background"
 import { Footer } from "@/components/footer"
 import { SkipLink } from "@/components/skip-link"
+import SpotlightSection from "@/components/SpotlightSection"
 
 export default function HomePage() {
   return (
@@ -19,6 +20,7 @@ export default function HomePage() {
         <SkillsMarquee />
         <About />
         <Projects />
+        <SpotlightSection/>
         <Contact /> 
       </main>
       <Footer />
