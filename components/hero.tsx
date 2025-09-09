@@ -39,7 +39,7 @@ export function Hero() {
       className="relative min-h-screen flex items-center justify-center px-6 pt-20"
       aria-labelledby="hero-heading"
     >
-      <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto grid lg:grid-cols-2 gap-6 items-center">
         {/* Left side - Text content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
