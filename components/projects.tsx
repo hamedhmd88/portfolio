@@ -146,7 +146,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative py-20 px-6 overflow-hidden"
+      className="relative py-20 px-6 overflow-hidden mx-auto"
       aria-labelledby="projects-heading"
     >
       {/* Animated background elements */}

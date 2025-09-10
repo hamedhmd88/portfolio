@@ -150,7 +150,7 @@ function MarqueeRow({ skills, direction, speed, rowIndex }: MarqueeRowProps) {
 
 export function SkillsMarquee() {
   return (
-    <section className="relative py-16 lg:py-24 overflow-hidden">
+    <section className="relative py-16 lg:py-24 overflow-hidden mx-auto">
       {/* Particles Background */}
       {/* <SkillsParticles /> */}
       
