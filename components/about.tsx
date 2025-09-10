@@ -6,8 +6,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative py-20 px-6 overflow-hidden mx-auto"
-      aria-labelledby="about-heading"
+     className="relative py-20 px-6 overflow-hidden w-full"       aria-labelledby="about-heading"
     >
       {/* Animated background elements */}
       <motion.div

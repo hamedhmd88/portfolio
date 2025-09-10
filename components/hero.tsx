@@ -36,8 +36,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-6 pt-20 mx-auto"
-      aria-labelledby="hero-heading"
+className="relative min-h-screen flex items-center justify-center px-6 pt-20 w-full"      aria-labelledby="hero-heading"
     >
       <div className="container mx-auto grid lg:grid-cols-2 gap-6 items-center">
         {/* Left side - Text content */}

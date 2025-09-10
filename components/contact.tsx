@@ -111,8 +111,7 @@ export function Contact() {
     // Section for contact with animated background
     <section
       id="contact"
-      className="relative py-20 px-6 overflow-hidden mx-auto"
-      aria-labelledby="contact-heading"
+      className="relative py-20 px-6 overflow-hidden w-full"      aria-labelledby="contact-heading"
     >
       {/* Animated background elements */}
       <motion.div
