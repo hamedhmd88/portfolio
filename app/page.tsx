@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main id="main-content" className="relative min-h-screen max-w-7xl">
+      <main id="main-content" className="relative min-h-screen">
         <Hero />
         <SkillsMarquee />
         <About />
