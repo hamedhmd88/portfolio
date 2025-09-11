@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`font-bungee  antialiased overflow-x-hidden`}>
+      <body className={`font-roboto  antialiased overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
           <Suspense fallback={null}>{children} <BackToTop/></Suspense>
           <Toaster />

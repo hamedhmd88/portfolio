@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merienda&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,10 +119,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  font-family: "Roboto", sans-serif;
+
   }
   body {
- @apply bg-background text-foreground;
-    font-family: 'Bungee', cursive;  }
+    @apply bg-background text-foreground;
+  font-family: "Roboto", sans-serif;
+  }
 
   /* Smooth scroll behavior for anchor navigation */
   html {
@@ -159,9 +161,8 @@
 }
 
 
-.font-bungee {
-  font-family: 'Bungee', cursive;
-}
-.font-merienda {
-  font-family: 'Merienda', cursive;
+
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+
 }
