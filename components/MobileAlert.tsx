@@ -1,41 +1,45 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogFooter } from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import { X } from 'lucide-react'
-import { useIsMobile } from '@/hooks/use-mobile'
+import { useEffect, useState } from "react";
 
-export default function MobileAlert() {
-  const isMobile = useIsMobile()
-  const [isOpen, setIsOpen] = useState(isMobile)
+const MobileAlert = () => {
+  const [show, setShow] = useState(false);
 
-  if (!isMobile) return null
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleResize = () => {
+        if (window.innerWidth < 768) {
+          setShow(true);
+        } else {
+          setShow(false);
+        }
+      };
+
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
+  if (!show) return null;
 
   return (
-    <>
-      {isOpen && (
-        <div className="fixed inset-0 z-40 backdrop-blur-md bg-black/50" />  // overlay برای blur و تیره کردن background
-      )}
-      <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
-        <AlertDialogContent className="max-w-sm z-50 relative">  
-          <AlertDialogHeader className="relative">
-            <AlertDialogTitle className="text-center">
-              For a better experience, please use larger devices.
-            </AlertDialogTitle>
-            <Button
-              variant="ghost"
-              className="absolute top-0 right-0 p-1"
-              onClick={() => setIsOpen(false)}
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </AlertDialogHeader>
-          <AlertDialogFooter className="justify-center">
-            <Button onClick={() => setIsOpen(false)}>Continue Anyway</Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </>
-  )
-}
+    // لایه بلر و تار کردن پس‌زمینه
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+      {/* خود باکس هشدار */}
+      <div className="bg-black-500/45 flex justify-center items-center flex-col text-green-800 rounded-xl p-6 max-w-sm w-full relative shadow-lg border-2 border-green-300">
+        <p className="text-center font-semibold text-base md:text-lg">
+          For the best experience, please use a larger device.
+        </p>
+        <button
+          onClick={() => setShow(false)}
+          className="mt-4 block w-1/2 bg-green-600 text-white font-medium text-lg hover:bg-green-700 rounded-md py-2 cursor-pointer"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default MobileAlert;
