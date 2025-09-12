@@ -45,7 +45,6 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`font-roboto  antialiased overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
-          <MobileAlert />
           <Suspense fallback={null}>{children} <BackToTop/></Suspense>
           <Toaster />
         </ThemeProvider>
