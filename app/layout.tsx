@@ -6,7 +6,7 @@ import { Suspense } from "react"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import BackToTop from "@/components/BackToTop"
-import MobileAlert from "@/components/MobileAlert"
+// import MobileAlert from "@/components/MobileAlert"
 
 export const metadata: Metadata = {
   title: "Hamed Mahjoobi - Front-End Developer Portfolio",
