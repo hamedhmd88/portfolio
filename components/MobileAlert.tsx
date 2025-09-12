@@ -25,10 +25,10 @@ const MobileAlert = () => {
 
   return (
     // لایه بلر و تار کردن پس‌زمینه
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/20  backdrop-blur-lg z-50">
       {/* خود باکس هشدار */}
       <div className="bg-black-500/45 flex justify-center items-center flex-col text-green-800 rounded-xl p-6 max-w-sm w-full relative shadow-lg border-2 border-green-300">
-        <p className="text-center font-semibold text-base md:text-lg">
+        <p className="text-center text-white font-semibold text-base md:text-lg">
           For the best experience, please use a larger device.
         </p>
         <button
